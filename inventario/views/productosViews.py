@@ -9,14 +9,6 @@ def VerProductos(request):
     productos    = Productos.objects.all()
     return Response(productos.values())
 
-@api_view(['GET'])
-def ProductosPorCategoria(request, *args,**kwargs):
-    data = kwargs['categoria']
-    id_categoria = Categorias.objects.filter(categoria = data)
-    id_categoria = id_categoria[0].id_categoria
-    productos    = Productos.objects.filter(id_categoria = 1)
-    return Response(productos.values())
-
 @api_view(['POST'])
 def CrearProducto(request, *args, **kwargs):
     data = request.data

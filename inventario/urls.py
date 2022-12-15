@@ -8,7 +8,6 @@ urlpatterns = [
     path('eliminarProveedor/<str:pk>', proveedoresViews.EliminarProveedor, name="eliminarProveedor"),
 
     path('productos/', productosViews.VerProductos, name="verProductos"),
-    path('products/<categoria>', productosViews.ProductosPorCategoria, name="ProductosPorCategoria"),
     path('nuevoProducto/', productosViews.CrearProducto, name="CrearProducto"),
     path('editarProducto/<str:pk>', productosViews.EditarProducto, name="editarProducto"),
     path('eliminarProducto/<str:pk>', productosViews.EliminarProducto, name="eliminarProducto"),
