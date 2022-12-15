@@ -3,7 +3,7 @@ from rest_framework                                  import views
 from rest_framework.response                         import Response
 from rest_framework.decorators                       import api_view
 
-from inventario.models import Facturas, Stock, Proveedores, Productos, Categorias
+from inventario.models import Facturas, Proveedores, Productos, Categorias
 from django.db import connection
 import json
 
