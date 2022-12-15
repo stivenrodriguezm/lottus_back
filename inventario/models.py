@@ -26,3 +26,14 @@ class Productos(models.Model):
     costo = models.BigIntegerField('costo', default=0)
     tiempo_entrega = models.IntegerField('tiempo_entrega', null=True)
     nota = models.CharField('nota',max_length=255, null=True)
+
+class Facturas(models.Model): 
+    id_auto = models.BigAutoField(primary_key=True)
+    id_proveedor = models.ForeignKey(Proveedores, CASCADE, default=None)
+    id_factura = models.IntegerField('id_factura', null=True)
+    nombre_proveedor = models.CharField(max_length=100, editable=True, null=True)
+    fecha_despacho = models.CharField(max_length=50, editable=True, null=True)
+    fecha_pago = models.CharField(max_length=50, editable=True, null=True)
+    valor = models.BigIntegerField('valor', default=0, editable=True)
+    pagada = models.BooleanField('pagada', null=True)
+    nota = models.CharField(max_length=500, editable=True, null=True)

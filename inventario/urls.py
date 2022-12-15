@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import (categoriasViews, proveedoresViews, productosViews)
+from .views import (categoriasViews, proveedoresViews, productosViews, facturasViews)
 
 urlpatterns = [
     path('proveedores/', proveedoresViews.VerProveedores, name="verProveedores"),
@@ -16,4 +16,10 @@ urlpatterns = [
     path('nuevaCategoria/', categoriasViews.CrearCategoria, name="CrearCategoria"),
     path('editarCategoria/<str:pk>', categoriasViews.EditarCategoria, name="EditarCategoria"),
     path('eliminarCategoria/<str:pk>', categoriasViews.EliminarCategoria, name="EliminarCategoria"),
+
+    path('facturas/', facturasViews.VerFacturas, name="VerFacturas"),
+    path('nuevaFactura/', facturasViews.CrearFactura, name="CrearFactura"),
+    path('editarFactura/<str:pk>', facturasViews.EditarFactura, name="EditarFactura"),
+    path('eliminarFactura/<str:pk>', facturasViews.EliminarFactura, name="EliminarFactura"),
+
 ]
