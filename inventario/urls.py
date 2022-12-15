@@ -1,5 +1,11 @@
 from django.urls import path
-from .views import (categoriasViews, proveedoresViews, productosViews, facturasViews)
+from .views import (categoriasViews, 
+    proveedoresViews, 
+    productosViews, 
+    facturasViews,
+    vendedoresViews,
+    transportadoresViews,
+    )
 
 urlpatterns = [
     path('proveedores/', proveedoresViews.VerProveedores, name="verProveedores"),
@@ -22,4 +28,13 @@ urlpatterns = [
     path('editarFactura/<str:pk>', facturasViews.EditarFactura, name="EditarFactura"),
     path('eliminarFactura/<str:pk>', facturasViews.EliminarFactura, name="EliminarFactura"),
 
+    path('vendedores/', vendedoresViews.VerVendedores, name="VerVendedores"),
+    path('nuevoVendedor/', vendedoresViews.CrearVendedor, name="CrearVendedores"),
+    path('editarVendedor/<str:pk>', vendedoresViews.EditarVendedor, name="EditarVendedores"),
+    path('eliminarVendedor/<str:pk>', vendedoresViews.EliminarVendedor, name="EliminarVendedores"),
+
+    path('transportadores/', transportadoresViews.VerTransportadores, name="Vertransportadores"),
+    path('nuevoTransportador/', transportadoresViews.CrearTransportador, name="Creartransportador"),
+    path('editarTransportador/<str:pk>', transportadoresViews.EditarTransportador, name="Editartransportador"),
+    path('eliminarTransportador/<str:pk>', transportadoresViews.EliminarTransportador, name="Eliminartransportador"),
 ]
