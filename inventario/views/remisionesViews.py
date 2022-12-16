@@ -80,7 +80,7 @@ def EditarRemision(request, **kwargs):
     remision.nota = data['nota']
     remision.save()
 
-    remision = Ventas.objects.filter(id_auto = id_auto)
+    remision = Remisiones.objects.filter(id_autogenerado = id_auto)
     return Response(remision.values())
 
 @api_view(['DELETE'])
