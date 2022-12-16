@@ -5,6 +5,9 @@ from .views import (categoriasViews,
     facturasViews,
     vendedoresViews,
     transportadoresViews,
+    ordenPedidoViews,
+    remisionesViews,
+    ventasViews,
     )
 
 urlpatterns = [
@@ -37,4 +40,24 @@ urlpatterns = [
     path('nuevoTransportador/', transportadoresViews.CrearTransportador, name="Creartransportador"),
     path('editarTransportador/<str:pk>', transportadoresViews.EditarTransportador, name="Editartransportador"),
     path('eliminarTransportador/<str:pk>', transportadoresViews.EliminarTransportador, name="Eliminartransportador"),
+
+    path('ordenesPedido/', ordenPedidoViews.VerOrdenesPedido, name="VerOrdenPedido"),
+    path('nuevaOrdenPedido/', ordenPedidoViews.CrearOrdenPedido, name="CrearOrdenPedido"),
+    path('editarOrdenPedido/<str:pk>', ordenPedidoViews.EditarOrdenPedido, name="EditarOrdenPedido"),
+    path('eliminarOrdenPedido/<str:pk>', ordenPedidoViews.EliminarOrdenPedido, name="EliminarOrdenPedido"),
+
+    path('ventas/', ventasViews.VerVentas, name="Ver Ventas"),
+    path('nuevaVenta/', ventasViews.CrearVenta, name="CrearVenta"),
+    path('editarVenta/<str:pk>', ventasViews.EditarVenta, name="EditarVenta"),
+    path('eliminarVenta/<str:pk>', ventasViews.EliminarVenta, name="EliminarVenta"),
+
+    path('remisiones/', remisionesViews.VerRemisiones, name="VerRemisiones"),
+    path('nuevaRemision/', remisionesViews.CrearRemision, name="CrearRemision"),
+    path('editarRemision/<str:pk>', remisionesViews.EditarRemision, name="EditarRemision"),
+    path('eliminarRemision/<str:pk>', remisionesViews.EliminarRemision, name="EliminarRemision"),
+
+    path('stock/', facturasViews.VerStock, name="VerStock"),
+    path('nuevoStock/', facturasViews.CrearStock, name="nuevoStock"),
+    path('editarStock/<str:pk>', facturasViews.EditarStock, name="EditarStock"),
+    path('eliminarStock/<str:pk>', facturasViews.EliminarStock, name="EliminarStock"),
 ]
