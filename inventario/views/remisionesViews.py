@@ -14,25 +14,31 @@ def VerRemisiones(request):
 
 @api_view(['POST'])
 def CrearRemision(request):
-    # data = request.data
+    data = request.data
 
-    # id_venta = Ventas.objects.only("id_auto").get(id_venta = data["id_venta"])
-    # id_transportador = Transportadores.objects.only("id_transportador").get(id_transportador = data["id_transportador"])
+    #Definir id's para la tabla relacional
+    id_venta = Ventas.objects.only("id_auto").get(id_venta = data["id_venta"])
+    id_transportador = Transportadores.objects.only("id_transportador").get(id_transportador = data["id_transportador"])
 
-    # transportador = Transportadores.objects.filter(id_transportador = data['id_transportador'])
-    # transportador = transportador[0]
-    # transportador = transportador.nombre_transportador
+    #Traer el nombre del transportador
+    transportador = Transportadores.objects.filter(id_transportador = data['id_transportador'])
+    transportador = transportador[0]
+    transportador = transportador.nombre_transportador
 
-    # remision = Remisiones.objects.create(
-    #     id_remision = data["id_remision"],
-    #     id_venta = id_venta,
-    #     id_transportador = id_transportador,
-    #     nombre_transportador = transportador,
-    #     fecha_remision = data["fecha_remision"],
-    #     nota = data["nota"],
-    # )
+    #crear la remision
+    remision = Remisiones.objects.create(
+        id_remision = data["id_remision"],
+        id_venta = id_venta,
+        id_transportador = id_transportador,
+        nombre_transportador = transportador,
+        fecha_remision = data["fecha_remision"],
+        nota = data["nota"],
+    )
 
-    # Definir informacion de los productos a eliminar de stock y guardarlos como string
+    return  Response(remision)
+    
+
+    # # Definir informacion de los productos a eliminar de stock y guardarlos como string
     # productos = data["productos"]
     # productos_entregados = []
 
@@ -49,7 +55,6 @@ def CrearRemision(request):
 
     # remision.productos_entregados = productos_entregados
     # remision.save()
-    return  Response({"done"})
 
 @api_view(['PUT'])
 def EditarRemision(request, **kwargs):
