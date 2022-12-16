@@ -47,7 +47,7 @@ def CrearVenta(request, *args, **kwargs):
 def EditarVenta(request, **kwargs):
     id_auto = kwargs['pk']
     data = request.data
-    vendedor = Vendedores.objects.only("id_vendedor").get(id_vendedor = data['id_vendedor_id'])
+    vendedor = Vendedores.objects.only("id_vendedor").get(id_vendedor = data['id_vendedor'])
     venta = Ventas.objects.get(id_auto = id_auto)
 
     if(vendedor != venta.id_vendedor):
