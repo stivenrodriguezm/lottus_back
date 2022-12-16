@@ -105,8 +105,8 @@ def EliminarCaja(request, **kwargs):
         valorCaja = valorCaja + valor
     if tipo == "Cierre":
         valorCaja = valorCaja
-    else:
-        valorCaja = valorCaja - valor
+    # else:
+    #     valorCaja = valorCaja - valor
 
     valorCajaData.valorActual = valorCaja
     valorCajaData.save()
