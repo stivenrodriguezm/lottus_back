@@ -18,43 +18,44 @@ def CrearRemision(request):
 
     #Definir id's para la tabla relacional
     id_venta = Ventas.objects.only("id_auto").get(id_venta = data["id_venta"])
-    # id_transportador = Transportadores.objects.only("id_transportador").get(id_transportador = data["id_transportador"])
+    id_transportador = Transportadores.objects.only("id_transportador").get(id_transportador = data["id_transportador"])
 
-    return  Response({'lol'})
-    # #Traer el nombre del transportador
-    # transportador = Transportadores.objects.filter(id_transportador = data['id_transportador'])
-    # transportador = transportador[0]
-    # transportador = transportador.nombre_transportador
+    #Traer el nombre del transportador
+    transportador = Transportadores.objects.filter(id_transportador = data['id_transportador'])
+    transportador = transportador[0]
+    transportador = transportador.nombre_transportador
 
-    # #crear la remision
-    # remision = Remisiones.objects.create(
-    #     id_remision = data["id_remision"],
-    #     id_venta = id_venta,
-    #     id_transportador = id_transportador,
-    #     nombre_transportador = transportador,
-    #     fecha_remision = data["fecha_remision"],
-    #     nota = data["nota"],
-    # )
+    #crear la remision
+    remision = Remisiones.objects.create(
+        id_remision = data["id_remision"],
+        id_venta = id_venta,
+        id_transportador = id_transportador,
+        nombre_transportador = transportador,
+        fecha_remision = data["fecha_remision"],
+        nota = data["nota"],
+    )
 
-    
+    # Definir informacion de los productos a eliminar de stock y guardarlos como string
+    productos = data["productos"]
+    productos_entregados = []
 
-    # # Definir informacion de los productos a eliminar de stock y guardarlos como string
-    # productos = data["productos"]
-    # productos_entregados = []
+    for producto in productos:
+        sql = f'select id_stock as stock, (select nombre_producto from inventario_productos where id_producto = id_producto_id) as producto, (select categoria from inventario_categorias where id_categoria = (select id_categoria_id from inventario_productos where id_producto = id_producto_id)) as categoria, id_factura_id as venta, valor, disponible, nota from inventario_stock where id_stock = {producto["id_stock"]};'
+        cursor = connection.cursor()
+        cursor.execute(sql)
+        product = cursor.fetchall()
+        product = product[0]
+        product = f'{product[1]}, {product[2]}, {product[6]}'
+        productos_entregados.append({product})
+        stock = Stock.objects.only("id_stock").get(id_stock = producto["id_stock"])
+        stock.delete()
 
-    # for producto in productos:
-    #     sql = f'select id_stock as stock, (select nombre_producto from inventario_productos where id_producto = id_producto_id) as producto, (select categoria from inventario_categorias where id_categoria = (select id_categoria_id from inventario_productos where id_producto = id_producto_id)) as categoria, id_factura_id as venta, valor, disponible, nota from inventario_stock where id_stock = {producto["id_stock"]};'
-    #     cursor = connection.cursor()
-    #     cursor.execute(sql)
-    #     product = cursor.fetchall()
-    #     product = product[0]
-    #     product = f'{product[1]}, {product[2]}, {product[6]}'
-    #     productos_entregados.append({product})
-    #     stock = Stock.objects.only("id_stock").get(id_stock = producto["id_stock"])
-    #     stock.delete()
+    remision.productos_entregados = productos_entregados
+    id_autogenerado = remision.id_autogenerado 
+    remision.save()
+    remisiones = Remisiones.objects.filter(id_autogenerado = id_autogenerado)
+    return  Response(remisiones.values())
 
-    # remision.productos_entregados = productos_entregados
-    # remision.save()
 
 @api_view(['PUT'])
 def EditarRemision(request, **kwargs):
