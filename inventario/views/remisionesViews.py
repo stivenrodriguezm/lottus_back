@@ -61,7 +61,7 @@ def CrearRemision(request):
 def EditarRemision(request, **kwargs):
     id_auto = kwargs['pk']
     data = request.data
-    # remision = Remisiones.objects.only("id_autogenerado").get(id_autogenerado = int(id_auto))
+    remision = Remisiones.objects.only("id_autogenerado").get(id_autogenerado = int(id_auto))
     # id_venta = Ventas.objects.only("id_auto").get(id_venta = data["id_venta_id"])
     # transportador = Transportadores.objects.only("id_transportador").get(id_transportador = data["id_transportador_id"])
 
