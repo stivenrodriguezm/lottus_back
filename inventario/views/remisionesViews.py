@@ -82,7 +82,6 @@ def EditarRemision(request, **kwargs):
 
     remision = Remisiones.objects.filter(id_autogenerado = id_auto)
     return Response(remision.values())
-    return Response({"lol"})
 
 @api_view(['DELETE'])
 def EliminarRemision(request, **kwargs):
