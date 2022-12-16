@@ -66,7 +66,7 @@ class Clientes(models.Model):
     ciudad_cliente = models.CharField('ciudad_cliente', null=True, max_length=250)
     correo_cliente = models.CharField('correo_cliente', null=True, max_length=250)
     telefono_cliente = models.CharField('telefono_cliente', null=True, max_length=250)
-    
+
 class Ventas(models.Model):
     id_auto = models.BigAutoField(primary_key=True)
     id_venta = models.IntegerField('id_venta',null=True)
@@ -92,7 +92,7 @@ class Pedidos(models.Model):
     tela = models.CharField('tela', null=True, max_length=250)
     fecha = models.CharField('fecha', null=True, max_length=250)
     fecha_despacho = models.CharField('fecha_despacho', null=True, max_length=250)
-    enviada = models.CharField('fecha_despacho', null=True, max_length=250)
+    enviada = models.BooleanField('enviada', null=True, max_length=250)
     recibida = models.BooleanField('recibida', null=True)
 
 class Remisiones(models.Model):
