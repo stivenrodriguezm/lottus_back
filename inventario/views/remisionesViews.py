@@ -66,7 +66,7 @@ def EditarRemision(request, **kwargs):
     transportador = Transportadores.objects.only("id_transportador").get(id_transportador = data["id_transportador_id"])
 
     if(id_venta.id_auto != remision.id_venta_id):
-        venta = Ventas.objects.only("id_auto").get(id_auto = data["id_venta_id"])
+        venta = Ventas.objects.only("id_auto").get(id_venta = data["id_venta_id"])
         remision.id_venta = venta
     
     if(transportador.id_transportador != remision.id_transportador_id):
