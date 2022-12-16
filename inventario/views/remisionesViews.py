@@ -65,23 +65,24 @@ def EditarRemision(request, **kwargs):
     id_venta = Ventas.objects.only("id_auto").get(id_venta = data["id_venta_id"])
     transportador = Transportadores.objects.only("id_transportador").get(id_transportador = data["id_transportador_id"])
 
-    if(id_venta.id_auto != remision.id_venta_id):
-        venta = Ventas.objects.only("id_auto").get(id_venta = data["id_venta_id"])
-        remision.id_venta = venta
+    # if(id_venta.id_auto != remision.id_venta_id):
+    #     venta = Ventas.objects.only("id_auto").get(id_venta = data["id_venta_id"])
+    #     remision.id_venta = venta
     
-    if(transportador.id_transportador != remision.id_transportador_id):
-        id_transportador = Transportadores.objects.only("id_transportador").get(id_transportador = data["id_transportador_id"])
-        remision.id_transportador_id = id_transportador
-        name = Transportadores.objects.get(id_transportador = id_transportador.id_transportador)
-        remision.nombre_transportador = name.nombre_transportador
+    # if(transportador.id_transportador != remision.id_transportador_id):
+    #     id_transportador = Transportadores.objects.only("id_transportador").get(id_transportador = data["id_transportador_id"])
+    #     remision.id_transportador_id = id_transportador
+    #     name = Transportadores.objects.get(id_transportador = id_transportador.id_transportador)
+    #     remision.nombre_transportador = name.nombre_transportador
 
-    remision.id_remision = data['id_remision']
-    remision.fecha_remision = data['fecha_remision']
-    remision.nota = data['nota']
-    remision.save()
+    # remision.id_remision = data['id_remision']
+    # remision.fecha_remision = data['fecha_remision']
+    # remision.nota = data['nota']
+    # remision.save()
 
-    remision = Remisiones.objects.filter(id_autogenerado = id_auto)
-    return Response(remision.values())
+    # remision = Remisiones.objects.filter(id_autogenerado = id_auto)
+    # return Response(remision.values())
+    return Response({"lol"})
 
 @api_view(['DELETE'])
 def EliminarRemision(request, **kwargs):
