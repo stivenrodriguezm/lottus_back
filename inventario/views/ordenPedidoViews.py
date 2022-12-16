@@ -2,7 +2,7 @@ from rest_framework                                  import views
 from rest_framework.response                         import Response
 from rest_framework.decorators                       import api_view
 
-from inventario.models import Pedidos
+from inventario.models import Pedidos, Ventas, Proveedores, Vendedores
 
 @api_view(['GET'])
 def VerOrdenesPedido(request):
@@ -12,19 +12,25 @@ def VerOrdenesPedido(request):
 @api_view(['POST'])
 def CrearOrdenPedido(request, *args, **kwargs):
     data = request.data
+    venta = Ventas.objects.only("id_venta").get(id_auto = data['id_venta'])
+    proveedor = Proveedores.objects.only("id_proveedor").get(id_proveedor = data['id_proveedor'])
+    vendedor = Vendedores.objects.only("id_vendedor").get(id_vendedor = data['id_vendedor'])
     pedido = Pedidos.objects.create(
         id_orden_pedido = data['id_orden_pedido'],
-        id_venta = data['id_venta'],
-        id_proveedor = data['id_proveedor'],
-        id_vendedor = data['id_vendedor'],
+        id_venta = venta,
+        id_proveedor = proveedor,
+        id_vendedor = vendedor,
         fecha = data['fecha'],
         fecha_despacho = data['fecha_despacho'],
         tela = data['tela'],
         enviada = data['enviada'],
-        recibida = data['recibida']
+        recibida = data['recibida'],
+        valor_total = data['valor_total']
     )
+    id_auto = pedido.id_auto
     pedido.save()
-    return Response({"Pedido creado exitosamente."})
+    pedido = Pedidos.objects.filter(id_auto = id_auto)
+    return Response(pedido.values())
 
 @api_view(['PUT'])
 def EditarOrdenPedido(request, **kwargs):
