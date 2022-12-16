@@ -8,6 +8,10 @@ from .views import (categoriasViews,
     ordenPedidoViews,
     remisionesViews,
     ventasViews,
+    cajaViews,
+    bancosViews,
+    reciboDeCajaViews,
+    comprobantesDeEgresoViews,
     )
 
 urlpatterns = [
@@ -60,4 +64,22 @@ urlpatterns = [
     path('nuevoStock/', facturasViews.CrearStock, name="nuevoStock"),
     path('editarStock/<str:pk>', facturasViews.EditarStock, name="EditarStock"),
     path('eliminarStock/<str:pk>', facturasViews.EliminarStock, name="EliminarStock"),
+
+    path('caja/', cajaViews.VerCaja, name="VerCaja"),
+    path('saldoActualCaja/', cajaViews.SaldoActualCaja, name="SaldoActualCaja"),
+    path('crearCaja/', cajaViews.CrearCaja, name="CrearCaja"),
+    path('editarCaja/<str:pk>', cajaViews.EditarCaja, name="editarCaja"),
+    path('eliminarCaja/<str:pk>', cajaViews.EliminarCaja , name="EliminarCaja"),
+
+    path('verMovimientosBancos/', bancosViews.VerMovimientosBancos, name="VerMovimientosBancos"),
+    path('verSaldoBancos/', bancosViews.VerSaldoBancos, name="VerSaldoBancos"),
+    path('agregarSaldoBancos/', bancosViews.AgregarSaldoBancos, name="AgregarSaldoBancos"),
+
+    path('reciboDeCaja/', reciboDeCajaViews.VerRecibosCaja , name="VerRecibosCaja"),
+    path('crearReciboCaja/', reciboDeCajaViews.CrearReciboCaja, name="CrearReciboCaja"),
+    path('eliminarReciboCaja/<str:pk>', reciboDeCajaViews.EliminarReciboCaja , name="EliminarReciboCaja"),
+
+    path('comprobantesDeEgreso/', comprobantesDeEgresoViews.VerCEs , name="comprobantesDeEgreso"),
+    path('crearComprobanteDeEgreso/', comprobantesDeEgresoViews.CrearCE, name="CrearComprobanteDeEgreso"),
+    path('eliminarComprobanteDeEgreso/<str:pk>', comprobantesDeEgresoViews.EliminarCE , name="eliminarComprobanteDeEgreso"),
 ]

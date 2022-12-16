@@ -113,3 +113,55 @@ class Stock(models.Model):
     valor = models.BigIntegerField('valor', null=True)
     disponible = models.BooleanField('disponible', null=True)
     nota = models.CharField('nota', max_length=255,null=True)
+
+class Caja(models.Model):
+    id_movimiento = models.BigAutoField(primary_key=True)
+    fecha = models.CharField('fecha', max_length=50, null=True)
+    concepto = models.CharField('concepto', null=True, max_length=500)
+    tipo = models.CharField('tipo', null=True, max_length=50)
+    subtipo = models.CharField('subtipo', null=True, max_length=50)
+    valor = models.BigIntegerField('valor', null=True)
+    valorCaja = models.BigIntegerField('valorCaja', null=True)
+
+class ValorEnCaja(models.Model):
+    valorActual = models.BigIntegerField('valorActual', null=True)
+
+class Bancos(models.Model):
+    id_movimiento = models.BigAutoField(primary_key=True)
+    banco = models.CharField('banco', max_length=100, null=True)
+    concepto = models.CharField('concepto', null=True, max_length=500)
+    fecha = models.CharField('fecha', max_length=50, null=True)
+    tipo = models.CharField('tipo', null=True, max_length=50)
+    valor = models.BigIntegerField('valor', null=True)
+
+class ReciboDeCaja(models.Model):
+    id_auto = models.BigAutoField(primary_key=True)
+    numero_recibo_caja = models.IntegerField('numero_recibo_caja', null=True)
+    id_venta = models.ForeignKey(Ventas, on_delete=models.CASCADE, default=None)
+    id_movimiento_caja = models.ForeignKey(Caja, on_delete=models.CASCADE, default=None, null=True)
+    id_movimiento_bancos = models.ForeignKey(Bancos, on_delete=models.CASCADE, default=None, null=True)
+    metodo_pago = models.CharField('metodo_pago', null=True, max_length=50)
+    abono_cancelacion = models.CharField('abono_cancelacion', null=True, max_length=50)
+    fecha = models.CharField('fecha', max_length=50, null=True)
+    valor = models.BigIntegerField('valor', null=True)
+
+class ComprobantesDeEgreso(models.Model):
+    id_auto = models.BigAutoField(primary_key=True)
+    numero_comprobante_egreso = models.IntegerField('numero_comprobante_egreso', null=True)
+    fecha = models.CharField('fecha', max_length=50, null=True)
+    id_movimiento_caja = models.ForeignKey(Caja, on_delete=models.CASCADE, default=None, null=True)
+    id_movimiento_bancos = models.ForeignKey(Bancos, on_delete=models.CASCADE, default=None, null=True)
+    id_proveedor = models.ForeignKey(Proveedores, on_delete=models.CASCADE, default=None)
+    metodo_pago = models.CharField('metodo_pago', null=True, max_length=50)
+    valor = models.BigIntegerField('valor', null=True)
+    facturas = models.CharField('facturas', null=True, max_length=500)
+    
+
+class CadaBanco(models.Model):
+    id_auto = models.BigAutoField(primary_key=True)
+    total_bancos = models.BigIntegerField('total_bancos', null=True, default=0)
+    bancolombia_lottus = models.BigIntegerField('bancolombia_lottus', null=True, default=0)
+    bancolombia_stiven = models.BigIntegerField('bancolombia_stiven', null=True, default=0)
+    davivienda = models.BigIntegerField('davivienda', null=True, default=0)
+    nequi = models.BigIntegerField('nequi', null=True, default=0)
+    daviplata = models.BigIntegerField('daviplata', null=True, default=0)
