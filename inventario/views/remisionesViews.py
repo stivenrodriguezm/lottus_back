@@ -17,7 +17,7 @@ def CrearRemision(request):
     data = request.data
 
     #Definir id's para la tabla relacional
-    # id_venta = Ventas.objects.only("id_auto").get(id_venta = data["id_venta"])
+    id_venta = Ventas.objects.only("id_auto").get(id_venta = data["id_venta"])
     # id_transportador = Transportadores.objects.only("id_transportador").get(id_transportador = data["id_transportador"])
 
     return  Response({'lol'})
