@@ -73,7 +73,7 @@ urlpatterns = [
 
     path('verMovimientosBancos/', bancosViews.VerMovimientosBancos, name="VerMovimientosBancos"),
     path('verSaldoBancos/', bancosViews.VerSaldoBancos, name="VerSaldoBancos"),
-    path('agregarSaldoBancos/', bancosViews.AgregarSaldoBancos, name="AgregarSaldoBancos"),
+    # path('agregarSaldoBancos/', bancosViews.AgregarSaldoBancos, name="AgregarSaldoBancos"),
 
     path('reciboDeCaja/', reciboDeCajaViews.VerRecibosCaja , name="VerRecibosCaja"),
     path('crearReciboCaja/', reciboDeCajaViews.CrearReciboCaja, name="CrearReciboCaja"),
