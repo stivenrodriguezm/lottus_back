@@ -84,7 +84,7 @@ def EliminarFactura(request, **kwargs):
     factura.delete()
     return Response({"La factura se ha eliminado."})
 
-#STOCK
+# STOCK /////////////////////////////////////////////////////////////////////////////////////
 
 @api_view(['GET'])
 def VerStock(request):

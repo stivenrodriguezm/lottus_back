@@ -77,6 +77,7 @@ urlpatterns = [
 
     path('reciboDeCaja/', reciboDeCajaViews.VerRecibosCaja , name="VerRecibosCaja"),
     path('crearReciboCaja/', reciboDeCajaViews.CrearReciboCaja, name="CrearReciboCaja"),
+    # pendiente poder editar un recibo de caja y que se edite relacionalmente
     path('eliminarReciboCaja/<str:pk>', reciboDeCajaViews.EliminarReciboCaja , name="EliminarReciboCaja"),
 
     path('comprobantesDeEgreso/', comprobantesDeEgresoViews.VerCEs , name="comprobantesDeEgreso"),
