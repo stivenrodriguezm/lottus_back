@@ -7,7 +7,7 @@ from inventario.models import Proveedores
 def VerProveedores(request):
     proveedores    = Proveedores.objects.all()
     return Response(proveedores.values())
-
+ 
 @api_view(['POST'])
 def CrearProveedores(request, *args, **kwargs):
     data = request.data
@@ -19,9 +19,10 @@ def CrearProveedores(request, *args, **kwargs):
         observacion = data['observacion'],
     )
     id_proveedor = proveedor.id_proveedor
+    nombre_proveedor = proveedor.nombre_proveedor
     proveedor.save()
     proveedor = Proveedores.objects.filter(id_proveedor = id_proveedor)
-    return Response(proveedor.values())
+    return Response({'El proveedor '+nombre_proveedor+' ha sido creado exitosamente'})
 
 @api_view(['PUT'])
 def EditarProveedor(request, **kwargs):

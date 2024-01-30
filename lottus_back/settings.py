@@ -43,10 +43,9 @@ INSTALLED_APPS = [
     'inventario',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = [
-    "https://muebleslottus.com",
-    "http://localhost:3000"
+    "*"
 ]
 
 MIDDLEWARE = [
@@ -62,7 +61,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'http://muebleslottus.com',
+    'http://localhost:8000',
 ]
 
 ROOT_URLCONF = 'lottus_back.urls'
@@ -92,10 +91,10 @@ WSGI_APPLICATION = 'lottus_back.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'u756180748_lottus_stock',
-        'USER': 'u756180748_lottusadmin',
-        'PASSWORD': 'Lottus12',
-        'HOST': 'us-imm-web535.main-hosting.eu',
+        'NAME': 'inventory',
+        'USER': 'root',
+        'PASSWORD': 0000,
+        'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }
